@@ -1,0 +1,70 @@
+/* --- Grid layout --- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin: 0; /* Bỏ margin */
+  padding: 0; /* Bỏ padding */
+  width: 100%;
+  align-items: start;
+}
+
+/* --- Card sản phẩm --- */
+.product-card {
+   height: auto;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+/* --- Ảnh sản phẩm --- */
+.product-img-wrapper {
+  width: 100%;
+  height: 180px;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.product-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* --- Thông tin sản phẩm --- */
+.product-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.product-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  line-height: 1.3em;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.product-price {
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+/* Thêm box-sizing để tính toán chính xác */
+* {
+  box-sizing: border-box;
+}

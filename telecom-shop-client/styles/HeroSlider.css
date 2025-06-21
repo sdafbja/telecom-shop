@@ -1,0 +1,37 @@
+.hero-slider {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  overflow: hidden;
+}
+
+.hero-slider .swiper {
+  width: 100%;
+  height: 400px; /* 👈 tăng chiều cao cho rõ hình */
+  border-radius: 10px;
+}
+
+.hero-slider .swiper-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slider-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 👈 đảm bảo ảnh lấp đầy mà không bị méo */
+  border-radius: 10px;
+}
+
+.caption {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}

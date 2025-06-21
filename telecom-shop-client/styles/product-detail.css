@@ -1,0 +1,143 @@
+body {
+  background: #f1f5f9; /* Nền toàn trang thống nhất */
+}
+
+
+/* Bố cục ngang */
+.product-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Ảnh sản phẩm */
+.product-image {
+  flex: 1 1 350px;
+  max-width: 400px;
+  text-align: center;
+}
+
+.product-image img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #f3f4f6;
+  padding: 1rem;
+}
+
+/* Thông tin sản phẩm */
+.product-info {
+  flex: 1 1 400px;
+}
+
+.product-info h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #e74c3c;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.quantity-control input {
+  width: 60px;
+  padding: 6px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn-add {
+  background-color: #00b894;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-add:hover {
+  background-color: #019875;
+}
+
+/* ĐÁNH GIÁ */
+.review-section {
+  margin-top: 3rem;
+  padding: 2rem;
+  border-radius: 10px;
+  background: #f9fafb;
+  box-shadow: 0 0 0 1px #e5e7eb;
+}
+
+.review-section h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.review-form select,
+.review-form textarea {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.review-form button {
+  width: fit-content;
+  background-color: #2563eb;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.review-form button:hover {
+  background-color: #1e40af;
+}
+
+.review-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.review-list li {
+  padding: 12px;
+  margin-bottom: 12px;
+  background: white;
+  border-left: 5px solid gold;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}

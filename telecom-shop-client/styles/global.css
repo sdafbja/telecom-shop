@@ -1,0 +1,38 @@
+/* Nền tổng thể */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #e6f0f8; /* 🌈 màu xanh sáng, dịu mắt */
+  color: #222;
+  scroll-behavior: smooth;
+}
+
+/* Layout bao ngoài App */
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main content chiếm phần giữa */
+.main-content {
+  flex: 1;
+  padding: 2rem 1rem;
+  background-color: #6bb2f9;
+}
+
+/* Container chuẩn */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Scrollbar đẹp */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 6px;
+}
