@@ -17,6 +17,7 @@ func RegisterRoutes(r *gin.Engine) {
 		productGroup.GET("", controllers.GetAllProducts)
 		productGroup.GET("/:id", controllers.GetProductByID)
 		productGroup.POST("", middlewares.JWTAuthMiddleware(), middlewares.RequireAdmin(), controllers.CreateProduct)
+		productGroup.PUT("/:id", middlewares.JWTAuthMiddleware(), middlewares.RequireAdmin(), controllers.UpdateProduct)
 		// productGroup.PUT("/:id", middlewares.JWTAuthMiddleware(), middlewares.RequireAdmin(), controllers.UpdateProduct)
 		productGroup.DELETE("/:id", middlewares.JWTAuthMiddleware(), middlewares.RequireAdmin(), controllers.DeleteProduct)
 	}

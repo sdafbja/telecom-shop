@@ -170,3 +170,67 @@ func GetProductByID(c *gin.Context) {
 	fmt.Println("✅ Tìm thấy sản phẩm:", product.Name)
 	c.JSON(http.StatusOK, product)
 }
+// UpdateProduct godoc
+// @Summary Cập nhật sản phẩm
+// @Description Cập nhật thông tin sản phẩm theo ID (chỉ Admin)
+// @Tags Products
+// @Accept multipart/form-data
+// @Produce json
+// @Param id path int true "ID sản phẩm"
+// @Param name formData string false "Tên sản phẩm"
+// @Param description formData string false "Mô tả"
+// @Param price formData number false "Giá"
+// @Param category_id formData int false "ID danh mục"
+// @Param image formData file false "Ảnh sản phẩm"
+// @Success 200 {object} models.Product
+// @Failure 400 {object} map[string]string
+// @Failure 404 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /products/{id} [put]
+// @Security BearerAuth
+func UpdateProduct(c *gin.Context) {
+	id := c.Param("id")
+
+	var product models.Product
+	if err := config.DB.First(&product, id).Error; err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Không tìm thấy sản phẩm"})
+		return
+	}
+
+	// Cập nhật các trường nếu có
+	if name := c.PostForm("name"); name != "" {
+		product.Name = name
+	}
+	if desc := c.PostForm("description"); desc != "" {
+		product.Description = desc
+	}
+	if priceStr := c.PostForm("price"); priceStr != "" {
+		if price, err := strconv.ParseFloat(priceStr, 64); err == nil {
+			product.Price = price
+		}
+	}
+	if categoryIDStr := c.PostForm("category_id"); categoryIDStr != "" {
+		if categoryID, err := strconv.Atoi(categoryIDStr); err == nil {
+			product.CategoryID = uint(categoryID)
+		}
+	}
+
+	// Cập nhật ảnh nếu có
+	file, err := c.FormFile("image")
+	if err == nil {
+		filename := filepath.Base(file.Filename)
+		savePath := "uploads/" + filename
+		if err := c.SaveUploadedFile(file, savePath); err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Không thể lưu ảnh"})
+			return
+		}
+		product.ImageURL = "/images/" + filename
+	}
+
+	if err := config.DB.Save(&product).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Không thể cập nhật sản phẩm"})
+		return
+	}
+
+	c.JSON(http.StatusOK, product)
+}

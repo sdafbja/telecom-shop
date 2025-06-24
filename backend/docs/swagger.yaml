@@ -739,6 +739,66 @@ paths:
       summary: Lấy chi tiết sản phẩm
       tags:
       - Products
+    put:
+      consumes:
+      - multipart/form-data
+      description: Cập nhật thông tin sản phẩm theo ID (chỉ Admin)
+      parameters:
+      - description: ID sản phẩm
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Tên sản phẩm
+        in: formData
+        name: name
+        type: string
+      - description: Mô tả
+        in: formData
+        name: description
+        type: string
+      - description: Giá
+        in: formData
+        name: price
+        type: number
+      - description: ID danh mục
+        in: formData
+        name: category_id
+        type: integer
+      - description: Ảnh sản phẩm
+        in: formData
+        name: image
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Product'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Cập nhật sản phẩm
+      tags:
+      - Products
   /register:
     post:
       consumes:
