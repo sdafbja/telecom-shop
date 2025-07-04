@@ -7,11 +7,11 @@ import (
 )
 
 func RegisterRoutes(r *gin.Engine) {
-	// 🔐 Auth
+	// Auth
 	r.POST("/register", controllers.Register)
 	r.POST("/login", controllers.Login)
 
-	// 🛒 Product
+	// Product
 	productGroup := r.Group("/products")
 	{
 		productGroup.GET("", controllers.GetAllProducts)
@@ -22,14 +22,14 @@ func RegisterRoutes(r *gin.Engine) {
 		productGroup.DELETE("/:id", middlewares.JWTAuthMiddleware(), middlewares.RequireAdmin(), controllers.DeleteProduct)
 	}
 
-	// 🧍‍♂️ User profile
+	// User profile
 	auth := r.Group("/")
 	auth.Use(middlewares.JWTAuthMiddleware())
 	{
 		auth.GET("/profile", controllers.GetCurrentUser)
 	}
 
-	// 🗂️ Categories
+	// Categories
 	categoryGroup := r.Group("/categories")
 	{
 		categoryGroup.GET("", controllers.GetAllCategories)
@@ -38,7 +38,7 @@ func RegisterRoutes(r *gin.Engine) {
 		categoryGroup.DELETE("/:id", middlewares.JWTAuthMiddleware(), middlewares.RequireAdmin(), controllers.DeleteCategory)
 	}
 
-	// 🔧 Admin
+	// Admin
 	admin := r.Group("/admin")
 	admin.Use(middlewares.JWTAuthMiddleware(), middlewares.RequireAdmin())
 	{
@@ -49,7 +49,7 @@ func RegisterRoutes(r *gin.Engine) {
 		admin.DELETE("/users/:id", controllers.DeleteUser)
 	}
 
-	// 🛒 Cart
+	// Cart
 	cart := r.Group("/cart")
 	cart.Use(middlewares.JWTAuthMiddleware())
 	{
@@ -61,7 +61,7 @@ func RegisterRoutes(r *gin.Engine) {
 
 	}
 
-	// 📦 Orders
+	//Orders
 	order := r.Group("/orders")
 	order.Use(middlewares.JWTAuthMiddleware())
 	{
@@ -70,7 +70,7 @@ func RegisterRoutes(r *gin.Engine) {
 	}
 
 	review := r.Group("/reviews")
-	review.Use(middlewares.JWTAuthMiddleware()) // 👈 nếu yêu cầu user đăng nhập
+	review.Use(middlewares.JWTAuthMiddleware()) 
 	{
 		review.POST("", controllers.CreateReview)
 	}
